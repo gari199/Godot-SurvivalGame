@@ -571,3 +571,7 @@ limit_bottom = 278
 position_smoothing_enabled = true
 
 [node name="Inv_UI" parent="." instance=ExtResource("4_5lieb")]
+offset_left = -41.0
+offset_top = -75.0
+offset_right = 41.0
+offset_bottom = -13.0

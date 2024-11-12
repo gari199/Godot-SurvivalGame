@@ -44,6 +44,6 @@ func drop_apple():
 	apple_instance.global_position = marker.global_position
 	get_parent().add_child(apple_instance)
 	
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(10.0).timeout
 		
 		
