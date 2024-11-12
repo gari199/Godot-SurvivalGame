@@ -8,8 +8,12 @@ var player_in_area = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var marker: Marker2D = $Marker2D
 
-
+#Importamos nuestro collectable y lo instanciamos para usarlo
 var apple = preload("res://scenes/apple_collectable.tscn")
+
+#Necesitamos en item para para poder llamar a la funcion collect(item) en
+@export var item: InvItem
+var player = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +34,7 @@ func _process(delta: float) -> void:
 func _on_pickable_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player_in_area = true
+		player = body
 
 func _on_pickable_area_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
@@ -43,7 +48,7 @@ func drop_apple():
 	var apple_instance = apple.instantiate()
 	apple_instance.global_position = marker.global_position
 	get_parent().add_child(apple_instance)
-	
+	player.collect(item)
 	await get_tree().create_timer(10.0).timeout
-		
+	growth_timer.start()  	#Funciona sin esta linea
 		

@@ -8,13 +8,15 @@ extends Control
 
 var is_open = false
 
-func update_slots():
-	for i in range(min(inv.items.size(), slots.size())): #Go through all the slots we have
-		slots[i].update(inv.items[i]) #Para slot[0], meterá item[1] y así sucesivamente???
-
 func _ready():
+	#cuando el inventorio llama la senhal, se actualiza. MUY COMPLICADO
+	inv.update.connect(update_slots)
 	update_slots()
 	close()
+	
+func update_slots():
+	for i in range(min(inv.slots.size(), slots.size())): #Go through all the slots we have
+		slots[i].update(inv.slots[i]) #Para slot[0], meterá item[1] y así sucesivamente???
 
 func _process(delta):
 	if Input.is_action_just_pressed("inventory"):

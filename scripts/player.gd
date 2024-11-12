@@ -47,3 +47,7 @@ func play_animation(dir):
 
 func player():
 	pass
+
+func collect(item):
+	inv.insert(item)
+	
